@@ -9,7 +9,9 @@ const cors = require('cors');
 
 // Enable CORS for all routes
 app.use(cors({
-    origin: 'http://localhost:3000', // Your React app's URL
+    origin: process.env.NODE_ENV === 'production' 
+        ? process.env.FRONTEND_URL 
+        : 'http://localhost:3000',
     credentials: true
 }));
 
