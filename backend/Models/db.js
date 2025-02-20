@@ -14,8 +14,15 @@ const mongoose = require("mongoose");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(MONGODB_URI)
-.then(() => console.log("MongoDB Connected Successfully to:", MONGODB_URI))
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    ssl: true,
+    tlsAllowInvalidCertificates: false,
+    retryWrites: true,
+    dbName: 'taskmanager'
+})
+.then(() => console.log("MongoDB Connected Successfully"))
 .catch((err) => console.log("MongoDB Connection Error:", err));
 
 // Handle connection events
